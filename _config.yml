@@ -3,8 +3,8 @@ title: PCM5566 Station
 SEOTitle: 长敏的小站 | PCM5566 Station
 header-img: img/home-bg.jpg
 email: pcm5566@163.com
-description: "今天的你一定会感谢昨天拼命努力的你"
-keyword: "南方"
+description: "Only fear can defeat life."
+keyword: "长敏"
 url: "https://pcm5566.github.io"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
@@ -13,7 +13,7 @@ baseurl: ""                             # for example, '/blog' if your blog host
 # SNS settings
 RSS: false
 # weibo_username:     huxpro
-zhihu_username:     peng-nan-fang-14/activities
+zhihu_username:     deng-huo-lan-shan-76-28/activities
 github_username:    pcm5566
 #twitter_username:  huxpro
 # facebook_username:  huxpro
