@@ -71,7 +71,7 @@ duoshuo_share: false                     # set to false if you want to use Comme
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "你好。</br>长敏。"
-sidebar-avatar: /img/avatar-nanfang.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: /img/avatar.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
