@@ -1,3 +1,14 @@
+---
+layout:     post
+title:      "TreeSet类集的排序杂谈"
+subtitle:   ""
+date:       2018-10-23
+author:     "pcm5566"
+header-img: "img/post-bg-weight.jpg"
+catalog: true
+tags:
+    - TreeSet
+---
 #关于java类集TreeSet的杂谈
 ##1.1Collection
 既然TreeSet本身是可以排序的，那么它是怎么实现排序的呢？
