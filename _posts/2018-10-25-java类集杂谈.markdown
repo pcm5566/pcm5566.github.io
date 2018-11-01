@@ -1,0 +1,17 @@
+#关于java类集TreeSet的杂谈
+##1.1Collection
+既然TreeSet本身是可以排序的，那么它是怎么实现排序的呢？
+```Java
+class Person{
+  private String name;
+  private int age;
+  public Person(String name,int age){
+    this.name = name;
+    this.age = age;
+  }
+  public String toString(){
+    return "姓名："+this.name+"；年龄:"+this.age;
+  }
+}
+```
+TreeSet中的元素是有序存放，所以对于一个对象必须指定好排序规则，且TreeSet中的每个对象所在的类都必须实现Comparable接口才可以正常使用。
