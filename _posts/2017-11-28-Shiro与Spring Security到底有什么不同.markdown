@@ -11,7 +11,7 @@ tags:
     - Spring Security
     - Difference
 ---
-#Shiro
+# Shiro
 首先Shiro较之 Spring Security，Shiro在保持强大功能的同时，还在简单性和灵活性方面拥有巨大优势。
 
 Shiro是一个强大而灵活的开源安全框架，能够非常清晰的处理认证、授权、管理会话以及密码加密。如下是它所具有的特点：
@@ -26,7 +26,7 @@ Shiro是一个强大而灵活的开源安全框架，能够非常清晰的处理
 不跟任何的框架或者容器捆绑，可以独立运行。
 
 
-#Spring Security
+# Spring Security
 除了不能脱离Spring，shiro的功能它都有。而且Spring Security对Oauth、OpenID也有支持,Shiro则需要自己手动实现。Spring Security的权限细粒度更高（笔者还未发现高在哪里）。
 
 
@@ -45,7 +45,7 @@ OpenID 系统的第一部分是身份验证，即如何通过 URI 来认证用�
 
 
 
-#综述
+# 综述
 个人认为现阶段需求，权限的操作粒度能控制在路径及按钮上，数据粒度通过sql实现。Shrio简单够用。
 
 至于OAuth，OpenID 站点间统一登录功能，现租户与各个产品间单点登录已经通过cookies实现，所以Spring Security的这两个功能可以不考虑。
