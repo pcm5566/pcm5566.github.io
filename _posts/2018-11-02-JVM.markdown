@@ -1,0 +1,66 @@
+---
+layout:     post
+title:      "使用Redis进行缓存"
+subtitle:   "Redis使用一二三"
+date:       2018-11-02
+author:     "pcm5566"
+header-img: "img/Disney.jpg"
+catalog: true
+tags:
+    - Redis
+    - Nosql
+---
+
+
+前台系统访问后台管理系统，如果要使用缓存，那么缓存逻辑一定放在后台系统。且要放在业务层。
+
+当然如果你想在前台系统做缓存，也是可以通过redis，一样的，就是在前台系统service调用restapi前进行redis查询。后台做就是在service查询数据库之前进行redis查询。
+
+当使用redis缓存时，要注意，在业务代码（service类）中，首先先从redis中去获取，然后return。但是这里要用try-catch。因为我们的业务不能因缓存服务器宕机而抛异常。
+
+我们在使用redis作缓存时，如果使用以下方式
+```java
+private JdkSerializationRedisSerializer jdkSerializer = new JdkSerializationRedisSerializer();
+
+@Autowired
+private RedisTemplate<Serializable, Serializable> redisTemplate;
+
+public Object get(Serializable key) {
+Object obj = redisTemplate.opsForValue().get(key);
+return jdkSerializer.deserialize((byte[]) obj);//当某service调用该方法后返回Object后，要根据你当时是存的什么类型，然后强转成该类型
+}
+
+
+public void set(Serializable key, Object value, Long minutes) {
+redisTemplate.opsForValue().set(key, jdkSerializer.serialize(value), minutes, TimeUnit.MINUTES);
+}
+
+
+public void set(Serializable key, Object value) {
+redisTemplate.opsForValue().set(key, jdkSerializer.serialize(value));// 永久保存
+}
+
+
+public void del(Serializable key) {
+redisTemplate.delete(key);
+}
+
+
+public void expire(Serializable key, Long minutes) {
+redisTemplate.expire(key, minutes, TimeUnit.MINUTES);
+}
+```
+那么，要传入的value要实现Serializable接口。因为jdkSerializer.serialize(value)方法在执行时会进入
+```java
+if (!(object instanceof Serializable)) {
+throw new IllegalArgumentException(getClass().getSimpleName() + " requires a Serializable payload " +
+"but received an object of type [" + object.getClass().getName() + "]");
+}
+```
+。
+
+当然如果我们传入的对象没有实现Serializable，我们可以使用ObjectMapper的writeValueAsString方法转成字符串传入。到时再get后再用readValue转成对象。
+
+注：
+<br>1、参考维基百科https://en.wikipedia.org/wiki/Redis
+<br>2、谷歌了一下
