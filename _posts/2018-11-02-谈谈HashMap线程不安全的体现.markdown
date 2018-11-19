@@ -15,6 +15,7 @@ tags:
 >面试经常会问到HashMap是否线程安全，答案众所周知——HashMap是线程不安全的。为什么说HashMap是线程不安全的呢？它在多线程环境下，会发生什么情况呢？
 
 >我们都知道HashMap初始容量大小为16,一般来说，当有数据要插入时，都会检查容量有没有超过设定的thredhold，如果超过，需要增大Hash表的尺寸，但是这样一来，整个Hash表里的元素都需要被重算一遍。这叫rehash，这个成本相当的大。
+
 ```java
 void resize(int newCapacity) {
         Entry[] oldTable = table;
@@ -29,6 +30,8 @@ void resize(int newCapacity) {
         table = newTable;
         threshold = (int)Math.min(newCapacity * loadFactor, MAXIMUM_CAPACITY + 1);
 }
+```
+```java
 void transfer(Entry[] newTable, boolean rehash) {
         int newCapacity = newTable.length;
         for (Entry<K,V> e : table) {
@@ -45,6 +48,7 @@ void transfer(Entry[] newTable, boolean rehash) {
         }
 }
 ```
+
 >大概看下transfer：
 1. 对索引数组中的元素遍历
 2. 对链表上的每一个节点遍历：用 next 取得要转移那个元素的下一个，将 e 转移到新 Hash 表的头部，使用头插法插入节点。
